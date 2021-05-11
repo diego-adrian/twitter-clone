@@ -1,6 +1,6 @@
 import { lazy, Suspense } from 'react';
 
-const LoginComponent = lazy(() => import('../components/Login'));
+const LoginComponent = lazy(() => import('../components/Login/Login'));
 const SidebarComponent = lazy(() => import('../components/Sidebar'));
 
 export const Login = () => (

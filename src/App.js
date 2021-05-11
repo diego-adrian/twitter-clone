@@ -3,6 +3,8 @@ import {
   Switch,
   Route
 } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import { useLocation, useHistory } from 'react-router-dom';
 import { ApolloProvider } from '@apollo/client';
 import { Container } from 'semantic-ui-react';
 import Paths from './routes';
@@ -11,13 +13,25 @@ import './App.css';
 
 const Routes = () => (Paths || []).map((item, idx) => <Route key={idx} exact={item.exact} path={item.path} component={item.component} />);
 
+const Pages = () => {
+  const location = useLocation();
+  const history = useHistory();
+  const [user, setUser] = useState(null);
+  useEffect(() => {
+    if (!user && location.path !== '/login') {
+      history.push('/login');
+    }
+  }, [location]);
+  return <Routes/>;
+}
+
 const App = () => {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <Container>
+        <Container fluid>
           <Switch>
-            <Routes/>
+            <Pages/>
           </Switch>
         </Container>
       </Router>

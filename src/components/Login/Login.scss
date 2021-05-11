@@ -1,0 +1,14 @@
+.login {
+  height: 100vh;
+  img {
+    width: 100%;
+    object-fit: cover;
+    overflow: hidden;
+    max-height: 100vh;
+    min-height: 100vh;
+  }
+  .form {
+    width: 70%;
+    margin: auto;
+  }
+}
