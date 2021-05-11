@@ -16,6 +16,7 @@ const Login = () => {
     contrasena: ''
   });
 
+  const isValidEmail = () => !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formRegister.values.email);
   const handleClickSubmit = (e) => {
     e.preventDefault();
     console.log(22);
@@ -100,7 +101,7 @@ const Login = () => {
                 placeholder="Email"
                 name="email"
                 fluid
-                error={ formRegister.errors.email && formRegister.touched.email ? { content: 'Por favor ingrese su email', pointing: 'below'} : null }
+                error={ (formRegister.errors.email && formRegister.touched.email) || isValidEmail() ? { content: 'Por favor ingrese su email o no es valido', pointing: 'below'} : null }
                 onFocus={formRegister.handleTouched}
                 onChange={formRegister.handleChange}
                 value={formRegister.values.email}
