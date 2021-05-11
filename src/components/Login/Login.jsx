@@ -16,6 +16,11 @@ const Login = () => {
     contrasena: ''
   });
 
+  const closeModal = () => {
+    setOpen(!open);
+    formRegister.handleReset();
+  }
+
   const isValidEmail = () => !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formRegister.values.email);
   const handleClickSubmit = (e) => {
     e.preventDefault();
@@ -37,7 +42,7 @@ const Login = () => {
                   fluid
                   name="usuario"
                   error={ formLogin.errors.usuario && formLogin.touched.usuario ? { content: 'Por favor ingrese su usuario', pointing: 'below'} : null }
-                  onFocus={formLogin.handleTouched}
+                  onBlur ={formLogin.handleTouched}
                   onChange={formLogin.handleChange}
                   value={formLogin.values.usuario}
                   placeholder="Usuario"
@@ -49,7 +54,7 @@ const Login = () => {
                   error={ formLogin.errors.contrasena && formLogin.touched.contrasena ? { content: 'Por favor ingrese su contrasena', pointing: 'below' } : null }
                   value={formLogin.values.contrasena}
                   name="contrasena"
-                  onFocus={formLogin.handleTouched}
+                  onBlur ={formLogin.handleTouched}
                   onChange={formLogin.handleChange}
                   placeholder="Contrasena"
                   fluid
@@ -78,7 +83,7 @@ const Login = () => {
                 name="nombre"
                 fluid
                 error={ formRegister.errors.nombre && formRegister.touched.nombre ? { content: 'Por favor ingrese su nombre completo', pointing: 'below'} : null }
-                onFocus={formRegister.handleTouched}
+                onBlur ={formRegister.handleTouched}
                 onChange={formRegister.handleChange}
                 value={formRegister.values.nombre}
               ></Form.Input>
@@ -90,7 +95,7 @@ const Login = () => {
                 name="usuario"
                 fluid
                 error={ formRegister.errors.usuario && formRegister.touched.usuario ? { content: 'Por favor ingrese su username', pointing: 'below'} : null }
-                onFocus={formRegister.handleTouched}
+                onBlur ={formRegister.handleTouched}
                 onChange={formRegister.handleChange}
                 value={formRegister.values.usuario}
               ></Form.Input>
@@ -101,8 +106,8 @@ const Login = () => {
                 placeholder="Email"
                 name="email"
                 fluid
-                error={ (formRegister.errors.email && formRegister.touched.email) || isValidEmail() ? { content: 'Por favor ingrese su email o no es valido', pointing: 'below'} : null }
-                onFocus={formRegister.handleTouched}
+                error={ (formRegister.errors.email && formRegister.touched.email) || (isValidEmail() && formRegister.touched.email) ? { content: 'Por favor ingrese su email o no es valido', pointing: 'below'} : null }
+                onBlur ={formRegister.handleTouched}
                 onChange={formRegister.handleChange}
                 value={formRegister.values.email}
               ></Form.Input>
@@ -115,7 +120,7 @@ const Login = () => {
                 type="password"
                 fluid
                 error={ formRegister.errors.contrasena && formRegister.touched.contrasena ? { content: 'Por favor ingrese su contrasena', pointing: 'below'} : null }
-                onFocus={formRegister.handleTouched}
+                onBlur ={formRegister.handleTouched}
                 onChange={formRegister.handleChange}
                 value={formRegister.values.contrasena}
               ></Form.Input>
@@ -123,8 +128,8 @@ const Login = () => {
           </Form>
         </Modal.Content>
         <Modal.Actions>
-          <Button secondary onClick={() => setOpen(!open)}>Cancelar</Button>
-          <Button primary>Registrar usuario</Button>
+          <Button secondary onClick={closeModal}>Cancelar</Button>
+          <Button primary onClick={ formRegister.handleReset}>Registrar usuario</Button>
         </Modal.Actions>
       </Modal>
     </>

@@ -13,27 +13,29 @@ const useForm = keys => {
     touched: Object.keys(keys).reduce((container, key) => {
       container[key] = false;
       return container;
-    }, {})
+    }, {}),
+    initialKeys: Object.keys(keys).reduce((container, key) => {
+      container[key] = '';
+      return container;
+    }, {}),
   })
   return [{
     errors: form.errors,
     values: form.values,
-    touched:  form.touched,
+    touched: form.touched,
     handleReset: () => {
-      setForm({
-        values: Object.keys(keys).reduce((container, key) => {
-          container[key] = '';
-          return container;
-        }, {}),
-        errors: Object.keys(keys).reduce((container, key) => {
+      setForm(form => ({
+        ...form,
+        values: form.initialKeys,
+        errors: Object.keys(form.initialKeys).reduce((container, key) => {
           container[key] = true;
           return container;
         }, {}),
-        touched: Object.keys(keys).reduce((container, key) => {
+        touched: Object.keys(form.initialKeys).reduce((container, key) => {
           container[key] = false;
           return container;
         }, {})
-      });
+      }));
     },
     handleTouched: ({ target: { name }}) => {
       setForm(form => ({
