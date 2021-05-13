@@ -23,6 +23,7 @@ const useForm = keys => {
     errors: form.errors,
     values: form.values,
     touched: form.touched,
+    handleErrors: Object.keys(form.initialKeys).some(key => form.errors[key]),
     handleReset: () => {
       setForm(form => ({
         ...form,
