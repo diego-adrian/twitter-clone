@@ -24,7 +24,7 @@ const Pages = ({ auth, setAuth }) => {
       history.push('/login');
     } else {
       setAuth(token);
-      history.push('/posts');
+      history.push(location.path);
     }
   }, [location]);
   return <Routes/>;
