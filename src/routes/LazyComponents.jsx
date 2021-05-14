@@ -1,7 +1,7 @@
 import { lazy, Suspense } from 'react';
 
 const LoginComponent = lazy(() => import('../components/Login/Login'));
-const SidebarComponent = lazy(() => import('../components/Sidebar'));
+const HomeComponent = lazy(() => import('../components/Home/Home'));
 
 export const Login = () => (
   <Suspense fallback={<div className="waiting">Espere unos segundos por favor...</div>}>
@@ -9,8 +9,8 @@ export const Login = () => (
   </Suspense>
 )
 
-export const Sidebar = () => (
+export const Home = () => (
   <Suspense fallback={<div className="waiting">Espere unos segundos por favor...</div>}>
-    <SidebarComponent/>
+    <HomeComponent/>
   </Suspense>
 )

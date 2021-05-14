@@ -11,7 +11,6 @@ import Paths from './routes';
 import client from './apollo';
 import AuthContext from './context/AuthContext';
 import Storage from './plugins/Storage';
-import './App.css';
 
 const Routes = () => (Paths || []).map((item, idx) => <Route key={idx} exact={item.exact} path={item.path} component={item.component} />);
 

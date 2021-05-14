@@ -69,7 +69,7 @@ const Login = () => {
         const { token } = data.authentication;
         Storage.set('token', token);
         setUser(token);
-        history.push('/posts');
+        history.push('/home');
         setMessage({
           status: '',
           header: '',

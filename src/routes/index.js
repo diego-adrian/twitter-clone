@@ -1,4 +1,5 @@
 import { Login } from './LazyComponents';
+import { Home } from './LazyComponents';
 
 const routes = [
   {
@@ -6,7 +7,13 @@ const routes = [
     name: 'Login',
     exact: true,
     component: Login
-  }
+  },
+  {
+    path: '/home',
+    name: 'Home',
+    exact: false,
+    component: Home
+  },
 ];
 
 export default routes;
